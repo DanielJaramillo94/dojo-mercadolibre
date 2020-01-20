@@ -30,10 +30,17 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "plugin:vue/strongly-recommended"
     ],
-    "rules": {},
+    "rules": {
+      "vue/html-closing-bracket-spacing": ["error", {
+        "selfClosingTag": "never"
+      }],
+      "vue/html-closing-bracket-newline": ["error", {
+        "multiline": "never"
+      }]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

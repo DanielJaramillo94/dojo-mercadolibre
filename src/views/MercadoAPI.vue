@@ -2,9 +2,15 @@
   <div class="about">
     <h1>Here we test the Mercado Libre API!</h1>
     <div class="api-container">
-      <md-button class="md-raised md-primary" @click="onClickSearch">Search!</md-button>
+      <md-button
+        class="md-raised md-primary"
+        @click="onClickSearch">
+        Search!
+      </md-button>
       <div class="search-container">
-        <p id="api-search-results">{{searchResults}}</p>
+        <p id="api-search-results">
+          {{ searchResults }}
+        </p>
       </div>
     </div>
   </div>
@@ -23,12 +29,8 @@ export default {
   methods: {
     onClickSearch() {
       // eslint-disable-next-line no-console
-      console.log('search!')
+      console.log(axios)
     }
-  },
-  mounted() {
-    // eslint-disable-next-line no-console
-    console.log(axios)
   },
 }
 </script>
