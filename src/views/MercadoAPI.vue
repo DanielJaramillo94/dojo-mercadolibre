@@ -24,12 +24,25 @@ export default {
   data() {
     return {
       searchResults: 'No search results yet!',
+      offset: 30,
+      limit: 40,
     }
   },
   methods: {
     onClickSearch() {
-      // eslint-disable-next-line no-console
-      console.log(axios)
+      this.searchResults = "buscando...";
+      axios.get("https://api.mercadolibre.com/sites/MCO/search", {
+          params: {
+            q: 'gafas',
+            offset: this.offset,
+            limit: this.limit
+          }
+        })
+        .then(data => {
+          // eslint-disable-next-line no-console
+          console.log(data.data);
+          this.searchResults = data.data.results[0];
+        });
     }
   },
 }
@@ -45,10 +58,9 @@ md-button {
   align-items: center;
 }
 .search-container {
-  background-color: #f2f2f2;
+  background-color: #dedede;
   width: 100%;
-  height: 80px;
-  /* width: 200px;
-  height: 500px; */
+  height: fit-content;
+  min-height: 80px;
 }
 </style>
