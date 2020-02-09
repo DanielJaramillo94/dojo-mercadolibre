@@ -8,10 +8,13 @@
         Search!
       </md-button>
       <div class="search-container">
-        <p id="api-search-results">
-          {{ searchResults }}
-        </p>
-        <item-card/>
+        <template v-if="thereIsSearchResults">
+          <card-results
+          :resultsData="searchResults"/>
+        </template>
+        <template v-else>
+          <p>{{searchResults}}</p>
+        </template>
       </div>
     </div>
   </div>
@@ -19,18 +22,19 @@
 
 <script>
 import axios from 'axios'
-import ItemCard from '@/components/ItemCard'
+import CardResults from '@/components/CardResults'
 
 export default {
   name: 'MercadoAPI',
   components: {
-    ItemCard,
+    CardResults,
   },
   data() {
     return {
-      searchResults: 'No search results yet!',
+      searchResults: 'There is no results yet!',
       offset: 30,
       limit: 40,
+      thereIsSearchResults: false,
     }
   },
   methods: {
@@ -44,9 +48,10 @@ export default {
           }
         })
         .then(data => {
+          this.searchResults = data.data.results;
           // eslint-disable-next-line no-console
-          console.log(data.data);
-          this.searchResults = data.data.results[0];
+          console.log(this.searchResults);
+          this.thereIsSearchResults = true;
         });
     }
   },
@@ -56,7 +61,6 @@ export default {
 <style scoped>
 .api-container {
   display: flex;
-  width: 100%;
   padding: 20px;
 }
 md-button {
@@ -65,7 +69,6 @@ md-button {
 .search-container {
   background-color: #dedede;
   width: 100%;
-  height: fit-content;
   min-height: 80px;
   padding: 1em;
 }

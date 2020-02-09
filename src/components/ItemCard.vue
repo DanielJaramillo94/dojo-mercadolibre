@@ -29,6 +29,7 @@ export default {
  background-color: whitesmoke;
  width: 270px;
  height: 350px;
+ margin: 7px 7px 7px 7px;
 }
 .name {
   background-color: #448aff;
