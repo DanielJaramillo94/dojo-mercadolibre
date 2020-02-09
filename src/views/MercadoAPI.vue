@@ -11,6 +11,7 @@
         <p id="api-search-results">
           {{ searchResults }}
         </p>
+        <item-card/>
       </div>
     </div>
   </div>
@@ -18,9 +19,13 @@
 
 <script>
 import axios from 'axios'
+import ItemCard from '@/components/ItemCard'
 
 export default {
   name: 'MercadoAPI',
+  components: {
+    ItemCard,
+  },
   data() {
     return {
       searchResults: 'No search results yet!',
@@ -62,5 +67,6 @@ md-button {
   width: 100%;
   height: fit-content;
   min-height: 80px;
+  padding: 1em;
 }
 </style>
