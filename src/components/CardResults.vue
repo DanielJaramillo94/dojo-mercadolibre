@@ -1,7 +1,7 @@
 <template>
   <div class="card-result-container">
       <template v-for="(result, index) in resultsData">
-        <item-card :key="index"/>
+        <item-card :key="index" :itemData="result"/>
       </template>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
   },
   props: {
     resultsData: {
-      type: Array,
+      // type: Array,
       default: function () {
         return {}
       }

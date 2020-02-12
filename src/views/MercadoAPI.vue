@@ -21,8 +21,10 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import mercadoLibreAPI from '../services/mercadolibre.service'
 import CardResults from '@/components/CardResults'
+/* eslint-disable */
 
 export default {
   name: 'MercadoAPI',
@@ -32,27 +34,21 @@ export default {
   data() {
     return {
       searchResults: 'There is no results yet!',
-      offset: 30,
-      limit: 40,
+      offset: 0,
+      limit: 15,
       thereIsSearchResults: false,
     }
   },
   methods: {
-    onClickSearch() {
+    async onClickSearch() {
       this.searchResults = "buscando...";
-      axios.get("https://api.mercadolibre.com/sites/MCO/search", {
-          params: {
-            q: 'gafas',
-            offset: this.offset,
-            limit: this.limit
-          }
-        })
-        .then(data => {
-          this.searchResults = data.data.results;
-          // eslint-disable-next-line no-console
-          console.log(this.searchResults);
-          this.thereIsSearchResults = true;
-        });
+      try {
+        this.searchResults = await mercadoLibreAPI.getElements('gafas', this.offset, this.limit)
+        this.searchResults = this.searchResults.data.results
+        this.thereIsSearchResults = true
+      } catch (error) {
+        this.searchResults = 'ERROR!'
+      }
     }
   },
 }

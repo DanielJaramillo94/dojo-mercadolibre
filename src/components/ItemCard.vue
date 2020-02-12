@@ -1,34 +1,64 @@
 <template>
   <div class="container">
     <div class="name">
-      <p>Item name long long long long long veeeeeeeeery long long long long long long veeeeeeeeery long</p>
-      <!-- <p>Item name</p> -->
+      <p>{{itemData.title}}</p>
     </div>
-    <div class="img"></div>
+    <div class="imgNbox">
+      <img v-bind:src="itemData.thumbnail" alt="image thumnail">
+      <div class="box">
+        <!-- <div class="seller">
+          <span>{{itemData.seller.id}}</span>
+        </div> -->
+        <p>${{itemData.price}}</p>
+      </div>
+    </div>
     <div class="info">
-      <div class="price"></div>
+        <div class="seller">
+          <div class="nickname">
+          <span>{{seller}}</span>
+          </div>
+          <div class="id">
+            <span>{{itemData.seller.id}}</span>
+          </div>
+        </div>
       <div class="link"></div>
     </div>
   </div>
 </template>
 
 <script>
+import mercadoLibreAPI from '../services/mercadolibre.service'
+/* eslint-disable */
+
 export default {
   name: 'ItemCard',
   data() {
     return {
       limit: 40,
+      seller: '',
     }
   },
+  props: {
+    itemData: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
+  },
+  async created() {
+    this.seller = await mercadoLibreAPI.getSeller(this.itemData.seller.id)
+    this.seller = this.seller.data.seller.nickname
+  }
 }
 </script>
 <style scoped>
 .container {
  display: flex;
  flex-direction: column;
- background-color: whitesmoke;
+ background-color: white;
  width: 270px;
- height: 350px;
+ height: 230px;
  margin: 7px 7px 7px 7px;
 }
 .name {
@@ -49,13 +79,51 @@ export default {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.img {
+.imgNbox {
+  /* background-color: aquamarine; */
+  display: flex;
   padding: 0 10px 0 10px;
+  max-height: 150px;
   width: 100%;
-  flex-grow: 3;
+}
+img {
+  margin: 15px 15px 10px 0px;
+  width: 100px;
+  height: 100px;
+}
+.box {
+  /* background-color: blueviolet; */
+  width: calc(100% - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.box p {
+  /* background-color: red; */
+  font-size: 1.7em;
+  padding: 10px;
+  overflow-wrap: break-word;
 }
 .info {
   flex-grow: 4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.seller {
+  display: flex;
+  flex-direction: column;
+  width: fit-content; 
+  /* width: 100%; */
+}
+.info .seller .nickname {
+  font-size: 1.5em;
+}
+.info .seller .id {
+  font-size: 0.7em;
+  align-self: flex-end;
+  color: darkgrey;
+  margin-top: -6px;
 }
 
 </style>
