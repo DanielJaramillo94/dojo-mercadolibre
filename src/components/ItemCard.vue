@@ -6,9 +6,6 @@
     <div class="imgNbox">
       <img v-bind:src="itemData.thumbnail" alt="image thumnail">
       <div class="box">
-        <!-- <div class="seller">
-          <span>{{itemData.seller.id}}</span>
-        </div> -->
         <p>${{itemData.price}}</p>
       </div>
     </div>
@@ -60,11 +57,23 @@ export default {
  width: 270px;
  height: 230px;
  margin: 7px 7px 7px 7px;
+
+ border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: all 0.3s ease-in-out;
+}
+.container:hover {
+  cursor: pointer;
+  transform: scale(1.03, 1.03);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.1s ease-in-out;
 }
 .name {
   background-color: #448aff;
   display: flex;
   justify-content: center;
+  border-radius: 5px 5px 0px 0px;
   width: 270px;
   height: 50px;
   padding: 5px;
@@ -80,7 +89,6 @@ export default {
   overflow: hidden;
 }
 .imgNbox {
-  /* background-color: aquamarine; */
   display: flex;
   padding: 0 10px 0 10px;
   max-height: 150px;
@@ -92,14 +100,12 @@ img {
   height: 100px;
 }
 .box {
-  /* background-color: blueviolet; */
   width: calc(100% - 100px);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .box p {
-  /* background-color: red; */
   font-size: 1.7em;
   padding: 10px;
   overflow-wrap: break-word;
@@ -114,7 +120,6 @@ img {
   display: flex;
   flex-direction: column;
   width: fit-content; 
-  /* width: 100%; */
 }
 .info .seller .nickname {
   font-size: 1.5em;
