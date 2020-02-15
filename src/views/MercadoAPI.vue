@@ -73,10 +73,14 @@ export default {
         } else {
           this.totalResults = queryResultsNumber
         }
-        // console.log('totalResults: ' + this.totalResults)
-        this.searchResults = this.searchResults.data.results
-        this.currentPage = 1
-        this.thereIsSearchResults = true
+        if (queryResultsNumber == 0) {
+          this.searchResults = 'Sorry! We did not find any results. 😔'
+        }
+        else {
+          this.searchResults = this.searchResults.data.results
+          this.currentPage = 1
+          this.thereIsSearchResults = true
+        }
       } catch (error) {
         console.error(error)
         this.searchResults = 'ERROR!'
@@ -98,6 +102,7 @@ export default {
         }
         // console.log('totalResults: ' + this.totalResults)
         this.searchResults = this.searchResults.data.results
+        window.scrollTo(0, 0)
         this.thereIsSearchResults = true
       } catch (error) {
         console.error(error)
@@ -108,7 +113,6 @@ export default {
       if (event.keyCode === 13) {
         this.onClickSearch()
       }
-      
     }
   },
 }

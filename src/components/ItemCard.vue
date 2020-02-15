@@ -106,6 +106,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-size: 0.86em;
 }
 .box p {
   font-size: 1.7em;
