@@ -1,13 +1,17 @@
 <template>
   <div class="about">
     <h1>Here we test the Mercado Libre API!</h1>
-    <div class="api-container">
+    <div class="search-group">
+      <b-form-input class="search-input" v-model="item" placeholder="Search you item!"
+      @keypress="enterPressed($event)"></b-form-input>
       <md-button
-        class="md-raised md-primary"
+        class="md-raised md-primary search-button"
         @click="onClickSearch">
         Search!
       </md-button>
-      <div class="search-container">
+    </div>
+    <div class="api-container">
+      <div class="results-container">
         <template v-if="thereIsSearchResults">
           <card-results
             :results-data="searchResults"/>
@@ -30,6 +34,8 @@
 import mercadoLibreAPI from '../services/mercadolibre.service'
 import CardResults from '@/components/CardResults'
 import { BPagination } from 'bootstrap-vue'
+import { BFormInput } from 'bootstrap-vue'
+
 /* eslint-disable */
 
 export default {
@@ -37,6 +43,7 @@ export default {
   components: {
     CardResults,
     BPagination,
+    BFormInput,
   },
   data() {
     return {
@@ -44,7 +51,7 @@ export default {
       offset: 0,
       limit: 50,
       thereIsSearchResults: false,
-      item: 'gafas',
+      item: '',
       
       APIlimitOffset: 1000,
 
@@ -68,6 +75,7 @@ export default {
         }
         // console.log('totalResults: ' + this.totalResults)
         this.searchResults = this.searchResults.data.results
+        this.currentPage = 1
         this.thereIsSearchResults = true
       } catch (error) {
         console.error(error)
@@ -96,20 +104,35 @@ export default {
         console.error(error)
         this.searchResults = 'ERROR!'
       }
+    },
+    enterPressed(event) {
+      if (event.keyCode === 13) {
+        this.onClickSearch()
+      }
+      
     }
   },
 }
 </script>
 
 <style scoped>
+.search-group{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.search-input {
+  width: 30%;
+}
 .api-container {
   display: flex;
   padding: 20px;
 }
-md-button {
+.search-button {
+  margin-top: -1px;
   align-items: center;
 }
-.search-container {
+.results-container {
   background-color: #dedede;
   width: 100%;
   min-height: 80px;

@@ -124,7 +124,7 @@ img {
   width: fit-content; 
 }
 .info .seller .nickname {
-  font-size: 1.5em;
+  font-size: 1.15em;
 }
 .info .seller .id {
   font-size: 0.7em;
