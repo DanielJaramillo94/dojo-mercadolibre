@@ -1,24 +1,26 @@
 <template>
-  <div class="container">
+  <div class="card-container">
     <div class="name">
-      <p>{{itemData.title}}</p>
+      <p>{{ itemData.title }}</p>
     </div>
     <div class="imgNbox">
-      <img v-bind:src="itemData.thumbnail" alt="image thumnail">
+      <img
+        :src="itemData.thumbnail"
+        alt="image thumnail">
       <div class="box">
-        <p>${{itemData.price}}</p>
+        <p>${{ itemData.price }}</p>
       </div>
     </div>
     <div class="info">
-        <div class="seller">
-          <div class="nickname">
-          <span>{{seller}}</span>
-          </div>
-          <div class="id">
-            <span>{{itemData.seller.id}}</span>
-          </div>
+      <div class="seller">
+        <div class="nickname">
+          <span>{{ seller }}</span>
         </div>
-      <div class="link"></div>
+        <div class="id">
+          <span>{{ itemData.seller.id }}</span>
+        </div>
+      </div>
+      <div class="link"/>
     </div>
   </div>
 </template>
@@ -50,7 +52,7 @@ export default {
 }
 </script>
 <style scoped>
-.container {
+.card-container {
  display: flex;
  flex-direction: column;
  background-color: white;
@@ -63,7 +65,7 @@ export default {
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
   transition: all 0.3s ease-in-out;
 }
-.container:hover {
+.card-container:hover {
   cursor: pointer;
   transform: scale(1.03, 1.03);
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);

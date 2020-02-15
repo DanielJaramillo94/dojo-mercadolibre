@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.19.1",
+    "bootstrap-vue": "^2.4.1",
     "core-js": "^3.4.4",
     "vue": "^2.6.10",
     "vue-material": "^1.0.0-beta-11",
@@ -34,12 +35,18 @@
       "plugin:vue/strongly-recommended"
     ],
     "rules": {
-      "vue/html-closing-bracket-spacing": ["error", {
-        "selfClosingTag": "never"
-      }],
-      "vue/html-closing-bracket-newline": ["error", {
-        "multiline": "never"
-      }]
+      "vue/html-closing-bracket-spacing": [
+        "error",
+        {
+          "selfClosingTag": "never"
+        }
+      ],
+      "vue/html-closing-bracket-newline": [
+        "error",
+        {
+          "multiline": "never"
+        }
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"

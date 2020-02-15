@@ -1,8 +1,10 @@
 <template>
   <div class="card-result-container">
-      <template v-for="(result, index) in resultsData">
-        <item-card :key="index" :itemData="result"/>
-      </template>
+    <template v-for="(result, index) in resultsData">
+      <item-card
+        :key="index"
+        :item-data="result"/>
+    </template>
   </div>
 </template>
 
