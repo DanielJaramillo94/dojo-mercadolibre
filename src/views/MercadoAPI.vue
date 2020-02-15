@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Here we test the Mercado Libre API!</h1>
+    <h1 class="page-name">MercadoDaniel!</h1>
     <div class="search-group">
       <b-form-input class="search-input" v-model="item" placeholder="Search you item!"
       @keypress="enterPressed($event)"></b-form-input>
@@ -85,7 +85,6 @@ export default {
     async pageChanged(page){
       this.thereIsSearchResults = false
       this.offset = this.limit*(page-1)
-      let offsetExeeded = false
       try {
         this.searchResults = "buscando..."
         this.searchResults = await mercadoLibreAPI.getElements(this.item, this.offset, this.limit)
@@ -116,6 +115,9 @@ export default {
 </script>
 
 <style scoped>
+.page-name {
+  padding: 20px;
+}
 .search-group{
   display: flex;
   width: 100%;

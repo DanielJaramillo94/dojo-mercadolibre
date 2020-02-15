@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">
-        Home
-      </router-link> |
-      <router-link to="/about">
-        About
-      </router-link> |
-      <router-link to="/mercado">
-        Mercado API
-      </router-link>
-    </div>
-    <router-view/>
+    <MercadoAPI/>
   </div>
 </template>
+
+<script>
+import MercadoAPI from './views/MercadoAPI'
+export default {
+  name: 'app',
+  components: {
+    MercadoAPI,
+  },
+}
+</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
